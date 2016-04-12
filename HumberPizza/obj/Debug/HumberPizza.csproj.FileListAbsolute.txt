@@ -1,0 +1,4 @@
+c:\users\adik\documents\visual studio 2012\Projects\HumberPizza\HumberPizza\bin\HumberPizza.dll
+c:\users\adik\documents\visual studio 2012\Projects\HumberPizza\HumberPizza\bin\HumberPizza.pdb
+c:\users\adik\documents\visual studio 2012\Projects\HumberPizza\HumberPizza\obj\Debug\HumberPizza.dll
+c:\users\adik\documents\visual studio 2012\Projects\HumberPizza\HumberPizza\obj\Debug\HumberPizza.pdb

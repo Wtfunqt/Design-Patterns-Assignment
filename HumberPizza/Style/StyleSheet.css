@@ -1,0 +1,73 @@
+﻿body {
+    background-image: url(../Images/Background_Grey.jpg);
+    background-repeat: no-repeat;
+}
+
+#wrapper {
+    width: 1080px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 5px solid #373330;  
+}
+
+#header {
+    clear: both;
+    height: 200px;
+    border: 5px solid #ff6a00;
+    background-image: url(../Images/PizzaBanner.PNG);
+}
+
+h1 {
+    font-size:100px;
+    color: orange;
+    text-shadow: 0 0 5px black, 0 0 6px #808080;
+    padding: 20px;
+}
+
+#navigation {
+    height: 50px;
+    background-image: url(../Images/maxresdefault.jpg);
+}
+
+#nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: auto;
+        display: none;
+}
+
+#nav li {
+    font-family: 'Helvetica Neue LT Pro';
+    float: left;
+    position: relative;
+    margin: 0 70px 0 -30px;
+    display: block;
+    text-shadow: 0.01cm 0.01cm 5px orange;
+}
+
+#nav a:link, #nav a:active, #nav a:visited {
+    text-decoration: none;
+    color:black;
+    font-size:45px;
+}
+
+#dealbar {
+    height: 60px;
+    border: 3px solid #373330
+}
+
+#content {
+}
+
+#footer {
+    clear: both;
+    height: 50px;
+    border: 5px solid #373330;   
+    background-image: url(../Images/maxresdefault.jpg);
+}
+
+h3 {
+    color: #e0c3ae;
+    text-shadow: 2px 2px black;
+}
