@@ -21,6 +21,6 @@ public class PizzaCheese extends Pizza {
 	
 	@Override
 	public String size() {
-		return "small";
+		return size;
 	}
 }
