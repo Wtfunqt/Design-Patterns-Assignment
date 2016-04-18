@@ -4,6 +4,9 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JPanel;
@@ -18,6 +21,7 @@ import java.awt.Color;
 import javax.swing.border.TitledBorder;
 import javax.swing.JList;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 
 public class PizzaForm {
@@ -27,6 +31,7 @@ public class PizzaForm {
 	private final ButtonGroup btngrpPizza = new ButtonGroup();
 	private final ButtonGroup btngrpSize = new ButtonGroup();
 	private final ButtonGroup btngrpDrinks = new ButtonGroup();
+	private final ButtonGroup btngrpCupSize = new ButtonGroup();
 
 	/**
 	 * Launch the application.
@@ -56,7 +61,7 @@ public class PizzaForm {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 500, 380);
+		frame.setBounds(100, 100, 520, 520);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JLabel title = new JLabel("Pizza");
@@ -69,7 +74,7 @@ public class PizzaForm {
 		JLabel lblNewLabel = new JLabel("Choose Pizza");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
-		JRadioButton rdbtnPepporoni = new JRadioButton("Pepporoni");
+		JRadioButton rdbtnPepporoni = new JRadioButton("Pepperoni");
 		btngrpPizza.add(rdbtnPepporoni);
 		
 		JRadioButton rdbtnBaconPiiza = new JRadioButton("Bacon Pizza");
@@ -79,8 +84,9 @@ public class PizzaForm {
 		JRadioButton rdbtnVeggiePizza = new JRadioButton("Veggie Pizza");
 		btngrpPizza.add(rdbtnVeggiePizza);
 		
-		JRadioButton rdbtnCustomPizza = new JRadioButton("Custom Pizza");
+		final JRadioButton rdbtnCustomPizza = new JRadioButton("Custom Pizza");
 		btngrpPizza.add(rdbtnCustomPizza);
+		
 		GroupLayout gl_pnlPizza = new GroupLayout(pnlPizza);
 		gl_pnlPizza.setHorizontalGroup(
 			gl_pnlPizza.createParallelGroup(Alignment.LEADING)
@@ -177,11 +183,15 @@ public class PizzaForm {
 		panel.setLayout(gl_panel);
 		pnlSize.setLayout(gl_pnlSize);
 		
-		JPanel panel_1 = new JPanel();
+		JPanel pnlDrinks = new JPanel();
+		pnlDrinks.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		
-		JPanel panel_2 = new JPanel();
+		final JPanel pnlCupSize = new JPanel();
+		pnlCupSize.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		pnlCupSize.setVisible(false);
 		
-		JList list = new JList();
+		
+		JList lstItems = new JList();
 		
 		JLabel lblNewLabel_2 = new JLabel("Orders");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -191,6 +201,9 @@ public class PizzaForm {
 		JButton btnRemove = new JButton("Remove");
 		
 		JButton btnClear = new JButton("Clear");
+		
+		final JPanel pnlCustom = new JPanel();
+		pnlCustom.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		GroupLayout groupLayout = new GroupLayout(frame.getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -198,29 +211,30 @@ public class PizzaForm {
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addComponent(title, GroupLayout.PREFERRED_SIZE, 434, GroupLayout.PREFERRED_SIZE)
 						.addGroup(groupLayout.createSequentialGroup()
+							.addGap(27)
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(pnlPizza, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
 								.addGroup(groupLayout.createSequentialGroup()
-									.addGap(27)
-									.addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addComponent(pnlSize, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
-										.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE))
-									.addGap(18))
+											.addComponent(pnlPizza, GroupLayout.PREFERRED_SIZE, 121, GroupLayout.PREFERRED_SIZE)
+											.addPreferredGap(ComponentPlacement.RELATED)
+											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+												.addGroup(groupLayout.createSequentialGroup()
+													.addComponent(pnlSize, GroupLayout.PREFERRED_SIZE, 104, GroupLayout.PREFERRED_SIZE)
+													.addPreferredGap(ComponentPlacement.UNRELATED)
+													.addComponent(pnlDrinks, GroupLayout.PREFERRED_SIZE, 90, GroupLayout.PREFERRED_SIZE))
+												.addComponent(pnlCupSize, GroupLayout.PREFERRED_SIZE, 204, GroupLayout.PREFERRED_SIZE)))
+										.addComponent(pnlCustom, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addGap(18)
+									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+										.addComponent(lstItems, GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+										.addComponent(lblNewLabel_2)))
 								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(btnAdd, GroupLayout.PREFERRED_SIZE, 72, GroupLayout.PREFERRED_SIZE)
+									.addGap(18)
 									.addComponent(btnRemove)
-									.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-									.addComponent(btnClear, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)
-									.addGap(45)))
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addComponent(list, GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-								.addComponent(lblNewLabel_2))))
+									.addGap(18)
+									.addComponent(btnClear, GroupLayout.PREFERRED_SIZE, 69, GroupLayout.PREFERRED_SIZE)))))
 					.addContainerGap())
 		);
 		groupLayout.setVerticalGroup(
@@ -228,64 +242,123 @@ public class PizzaForm {
 				.addGroup(groupLayout.createSequentialGroup()
 					.addComponent(title)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblNewLabel_2)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(list, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE)
-							.addGap(9))
+							.addComponent(lstItems, GroupLayout.PREFERRED_SIZE, 223, GroupLayout.PREFERRED_SIZE))
 						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(pnlSize, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-								.addComponent(panel_1, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(panel_2, GroupLayout.PREFERRED_SIZE, 73, GroupLayout.PREFERRED_SIZE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(pnlPizza, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(btnClear)
-								.addComponent(btnRemove)
-								.addComponent(btnAdd))))
-					.addGap(50))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+										.addComponent(pnlSize, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+										.addComponent(pnlDrinks, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 117, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(pnlCupSize, GroupLayout.PREFERRED_SIZE, 87, GroupLayout.PREFERRED_SIZE))
+								.addComponent(pnlPizza, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(18)
+							.addComponent(pnlCustom, GroupLayout.PREFERRED_SIZE, 119, GroupLayout.PREFERRED_SIZE)))
+					.addGap(18)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAdd)
+						.addComponent(btnRemove)
+						.addComponent(btnClear))
+					.addGap(59))
 		);
+		
+		JLabel lblNewLabel_3 = new JLabel("Toppings");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		
+		JCheckBox chckbxPepporoni = new JCheckBox("Pepperoni");
+		
+		JCheckBox chckbxExtraCheese = new JCheckBox("Extra Cheese");
+		
+		JCheckBox chckbxNewCheckBox = new JCheckBox("Pineapple");
+		
+		JCheckBox chckbxBacon = new JCheckBox("Bacon");
+		
+		JCheckBox chckbxMushroom = new JCheckBox("Mushroom");
+		
+		JCheckBox chckbxGrilledChicken = new JCheckBox("Grilled Chicken");
+		GroupLayout gl_pnlCustom = new GroupLayout(pnlCustom);
+		gl_pnlCustom.setHorizontalGroup(
+			gl_pnlCustom.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlCustom.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnlCustom.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel_3)
+						.addGroup(gl_pnlCustom.createSequentialGroup()
+							.addGroup(gl_pnlCustom.createParallelGroup(Alignment.LEADING)
+								.addComponent(chckbxExtraCheese)
+								.addComponent(chckbxNewCheckBox)
+								.addComponent(chckbxPepporoni))
+							.addPreferredGap(ComponentPlacement.UNRELATED)
+							.addGroup(gl_pnlCustom.createParallelGroup(Alignment.LEADING)
+								.addComponent(chckbxMushroom)
+								.addComponent(chckbxGrilledChicken)
+								.addComponent(chckbxBacon))))
+					.addContainerGap(127, Short.MAX_VALUE))
+		);
+		gl_pnlCustom.setVerticalGroup(
+			gl_pnlCustom.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlCustom.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblNewLabel_3)
+					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addGroup(gl_pnlCustom.createParallelGroup(Alignment.BASELINE)
+						.addComponent(chckbxPepporoni)
+						.addComponent(chckbxMushroom))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(gl_pnlCustom.createParallelGroup(Alignment.BASELINE)
+						.addComponent(chckbxExtraCheese)
+						.addComponent(chckbxBacon))
+					.addPreferredGap(ComponentPlacement.RELATED, 3, Short.MAX_VALUE)
+					.addGroup(gl_pnlCustom.createParallelGroup(Alignment.BASELINE)
+						.addComponent(chckbxNewCheckBox)
+						.addComponent(chckbxGrilledChicken))
+					.addContainerGap())
+		);
+		pnlCustom.setLayout(gl_pnlCustom);
 		
 		JLabel lblCupSize = new JLabel("Cup Size");
 		lblCupSize.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		
 		JRadioButton rdbtnLarge_1 = new JRadioButton("Large");
+		btngrpCupSize.add(rdbtnLarge_1);
 		
 		JRadioButton rdbtnMedium = new JRadioButton("Medium");
+		btngrpCupSize.add(rdbtnMedium);
 		
 		JRadioButton rdbtnSmall = new JRadioButton("Small");
-		GroupLayout gl_panel_2 = new GroupLayout(panel_2);
-		gl_panel_2.setHorizontalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
+		btngrpCupSize.add(rdbtnSmall);
+		GroupLayout gl_pnlCupSize = new GroupLayout(pnlCupSize);
+		gl_pnlCupSize.setHorizontalGroup(
+			gl_pnlCupSize.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlCupSize.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblCupSize)
-						.addGroup(gl_panel_2.createSequentialGroup()
+					.addGroup(gl_pnlCupSize.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pnlCupSize.createSequentialGroup()
 							.addComponent(rdbtnLarge_1)
-							.addGap(2)
+							.addPreferredGap(ComponentPlacement.RELATED)
 							.addComponent(rdbtnMedium)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(rdbtnSmall)))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addComponent(rdbtnSmall))
+						.addComponent(lblCupSize))
 					.addContainerGap(27, Short.MAX_VALUE))
 		);
-		gl_panel_2.setVerticalGroup(
-			gl_panel_2.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_2.createSequentialGroup()
+		gl_pnlCupSize.setVerticalGroup(
+			gl_pnlCupSize.createParallelGroup(Alignment.LEADING)
+				.addGroup(Alignment.TRAILING, gl_pnlCupSize.createSequentialGroup()
 					.addContainerGap()
 					.addComponent(lblCupSize)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
-					.addGroup(gl_panel_2.createParallelGroup(Alignment.BASELINE)
+					.addGroup(gl_pnlCupSize.createParallelGroup(Alignment.BASELINE)
 						.addComponent(rdbtnLarge_1)
 						.addComponent(rdbtnMedium)
 						.addComponent(rdbtnSmall))
-					.addContainerGap(66, Short.MAX_VALUE))
+					.addContainerGap())
 		);
-		panel_2.setLayout(gl_panel_2);
+		pnlCupSize.setLayout(gl_pnlCupSize);
 		
 		JLabel lblNewLabel_1 = new JLabel("Drinks");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -296,41 +369,59 @@ public class PizzaForm {
 		JRadioButton rdbtnCan = new JRadioButton("Can");
 		btngrpDrinks.add(rdbtnCan);
 		
-		JRadioButton rdbtnCup = new JRadioButton("Cup");
+		final JRadioButton rdbtnCup = new JRadioButton("Cup");
 		btngrpDrinks.add(rdbtnCup);
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addGap(10)
-							.addComponent(lblNewLabel_1))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(rdbtnBottle))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(rdbtnCan))
-						.addGroup(gl_panel_1.createSequentialGroup()
-							.addContainerGap()
-							.addComponent(rdbtnCup)))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+		
+		
+		ActionListener cupsize = new ActionListener() {
+		      public void actionPerformed(ActionEvent actionEvent) {
+		    	  if(rdbtnCup.isSelected()){
+		  			pnlCupSize.setVisible(true);
+		  		}else{
+		  			pnlCupSize.setVisible(false);
+		  		}
+		      }
+		    };
+		    rdbtnCup.addActionListener(cupsize);
+		GroupLayout gl_pnlDrinks = new GroupLayout(pnlDrinks);
+		gl_pnlDrinks.setHorizontalGroup(
+			gl_pnlDrinks.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDrinks.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_pnlDrinks.createParallelGroup(Alignment.LEADING)
+						.addComponent(rdbtnCup)
+						.addComponent(rdbtnCan)
+						.addComponent(lblNewLabel_1)
+						.addComponent(rdbtnBottle))
+					.addContainerGap(23, Short.MAX_VALUE))
 		);
-		gl_panel_1.setVerticalGroup(
-			gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup()
-					.addGap(11)
+		gl_pnlDrinks.setVerticalGroup(
+			gl_pnlDrinks.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_pnlDrinks.createSequentialGroup()
+					.addContainerGap()
 					.addComponent(lblNewLabel_1)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rdbtnBottle)
-					.addPreferredGap(ComponentPlacement.UNRELATED)
+					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(rdbtnCan)
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addComponent(rdbtnCup)
-					.addContainerGap(52, Short.MAX_VALUE))
+					.addContainerGap(8, Short.MAX_VALUE))
 		);
-		panel_1.setLayout(gl_panel_1);
+		pnlDrinks.setLayout(gl_pnlDrinks);
 		frame.getContentPane().setLayout(groupLayout);
+		
+		pnlCustom.setVisible(false);
+		ActionListener custom = new ActionListener() {
+		      public void actionPerformed(ActionEvent actionEvent) {
+		    	  if(rdbtnCustomPizza.isSelected()){
+		  			pnlCustom.setVisible(true);
+		  		}else{
+		  			pnlCustom.setVisible(false);
+		  		}
+		      }
+		    };
+		    rdbtnCustomPizza.addActionListener(custom);
+		
 	}
 }
