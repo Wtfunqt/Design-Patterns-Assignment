@@ -1,10 +1,14 @@
-public abstract class Drink implements Item {
+public class Drink implements Item {
+	protected String name;
+	protected double price;
+	
 	@Override
-	public abstract String name();
+	public String name() {
+		return name;
+	}
+	
 	@Override
-	public abstract String size();
-	@Override
-	public abstract double price();
-	@Override
-	public abstract String description();
+	public double price() {
+		return price;
+	}
 }
