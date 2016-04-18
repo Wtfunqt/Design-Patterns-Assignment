@@ -10,3 +10,12 @@
 /PizzaCustom.class
 /PizzaPepperoni.class
 /Tester.class
+/CustomPizzaDecorator.class
+/ItemDecorator.class
+/MediumSizeDecorator.class
+/SizeDecorator.class
+/MealBuilder.class
+/PizzaSizeDecorator.class
+/PizzaDecorator.class
+/DrinkDecorator.class
+/DrinkSizeDecorator.class
