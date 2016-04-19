@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Order {
+public class OrderBuilder {
 	private List<Item> array = new ArrayList<Item>();
 	private double total = 0;
 	

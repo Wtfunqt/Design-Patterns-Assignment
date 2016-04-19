@@ -1,6 +1,6 @@
 public class Drink implements Item {
-	protected String name;
-	protected double price;
+	protected String name = "drink";
+	protected double price = 1;
 	
 	@Override
 	public String name() {
