@@ -18,10 +18,10 @@ public class ItemFactory {
 		else if (ItemType.equalsIgnoreCase("large size drink")) {
 			return new DrinkSizeDecorator(new Drink(), "large");
 		}
-		else if (ItemType.equalsIgnoreCase("signature pizza")) {
+		else if (ItemType.equalsIgnoreCase("special pizza")) {
 			return new Pizza();
 		}
-		else if (ItemType.equalsIgnoreCase("signature drink")) {
+		else if (ItemType.equalsIgnoreCase("special drink")) {
 			return new Drink();
 		}
 		else return null;
