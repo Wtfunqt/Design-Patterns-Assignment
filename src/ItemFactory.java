@@ -12,11 +12,17 @@ public class ItemFactory {
 		else if (ItemType.equalsIgnoreCase("small size drink")) {
 			return new DrinkSizeDecorator(new Drink(), "small");
 		}
-		else if (ItemType.equalsIgnoreCase("memium size drink")) {
+		else if (ItemType.equalsIgnoreCase("medium size drink")) {
 			return new DrinkSizeDecorator(new Drink(), "medium");
 		}
 		else if (ItemType.equalsIgnoreCase("large size drink")) {
 			return new DrinkSizeDecorator(new Drink(), "large");
+		}
+		else if (ItemType.equalsIgnoreCase("signature pizza")) {
+			return new Pizza();
+		}
+		else if (ItemType.equalsIgnoreCase("signature drink")) {
+			return new Drink();
 		}
 		else return null;
 	}

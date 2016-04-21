@@ -4,9 +4,14 @@ public class Tester {
 		
 		ItemFactory itemFactory = new ItemFactory();
 		
+		order.addItem(itemFactory.getItem("small size pizza"));
+		order.addItem(itemFactory.getItem("medium size pizza"));
 		order.addItem(itemFactory.getItem("large size pizza"));
-		order.addItem(new DrinkSizeDecorator(new Drink(), "medium"));
-		order.addItem(new PizzaSizeDecorator(new Pizza(), "medium"));
+		order.addItem(itemFactory.getItem("small size drink"));
+		order.addItem(itemFactory.getItem("medium size drink"));
+		order.addItem(itemFactory.getItem("large size drink")); 
+		order.addItem(itemFactory.getItem("signature Pizza"));
+		order.addItem(itemFactory.getItem("signature drink"));
 		order.showItems();
 	}
 }
