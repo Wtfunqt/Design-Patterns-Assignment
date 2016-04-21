@@ -16,6 +16,10 @@ public class Order {
 	public void removeAll() {
 		array.clear();
 	}
+	
+	public Item getItem(int i) {
+		return array.get(i);
+	}
 
 	public void showItems() {
 		for (int i = 0; i < array.size(); i++) {
