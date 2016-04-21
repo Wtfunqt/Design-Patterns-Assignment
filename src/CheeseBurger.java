@@ -1,3 +1,5 @@
+
+
 public class CheeseBurger implements Item {
 	private String name = "Cheeseburger";
 	private double price = 3.79;
