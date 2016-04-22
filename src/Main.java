@@ -39,8 +39,12 @@ public class Main {
 		String date = reader.readLine();
 		System.out.println("Enter card security code");
 		String code = reader.readLine();
-		CreditCardTemplate card = new VisaCredit(name, number, date, code);
+		System.out.println("Enter balance please");
+		double balance = Double.parseDouble(reader.readLine());
+		CreditCardTemplate card = new VisaCredit(name, number, date, code, balance);
 		card.validation();
-		System.out.println(card.toString());
+		if (card.pay(order.getTotal()) == true)
+		System.out.println("Purchase was sucessful");
+		order.removeAll();
 	}
 }

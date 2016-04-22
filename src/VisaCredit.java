@@ -2,13 +2,13 @@
 
 public class VisaCredit extends CreditCardTemplate {
 
-	public VisaCredit(String name, String expiration, String number, String securityCode) {
-		super(name, expiration, number, securityCode);
+	public VisaCredit(String name, String expiration, String number, String securityCode, double balance) {
+		super(name, expiration, number, securityCode, balance);
 	}
 
 	@Override
 	public boolean isSecCodeValid() {
-		if (securityCode.length() == 3) 
+		if (getSecurityCode().length() == 3) 
 			return true;
 		else 
 			return false;
@@ -16,7 +16,7 @@ public class VisaCredit extends CreditCardTemplate {
 
 	@Override
 	public boolean cardNumLengthCheck() {
-		if (number.length() == 13 || number.length() == 16 || number.length() == 19)
+		if (getNumber().length() == 13 || getNumber().length() == 16 || getNumber().length() == 19)
 			return true;
 		else 
 			return false;
@@ -24,7 +24,7 @@ public class VisaCredit extends CreditCardTemplate {
 
 	@Override
 	public boolean cardNumPrefixCheck() {
-		if (number.substring(0, 1).equals("4"))
+		if (getNumber().substring(0, 1).equals("4"))
 			return true;
 		else 
 			return false;

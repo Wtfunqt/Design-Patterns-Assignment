@@ -21,6 +21,17 @@ public class Order {
 		return array.get(i);
 	}
 
+	public double getTotal() {
+		for (int i = 0; i < array.size(); i++) {
+			total += array.get(i).price();
+		}
+		return total;
+	}
+	
+	public int arraySize() {
+		return array.size();
+	}
+	
 	public void showItems() {
 		for (int i = 0; i < array.size(); i++) {
 			System.out.println(i+1 + " " + array.get(i).name() + " " + array.get(i).price());

@@ -1,18 +1,36 @@
 
 
 public abstract class CreditCardTemplate {
-	protected String name;
-	protected String number;
-	protected String expiration;
-	protected String securityCode;
-		
-	protected CreditCardTemplate(String name, String number, String expiration, String securityCode) {
+	private String name;
+	private String number;
+	private String expiration;
+	private String securityCode;
+	private double balance;
+	
+	protected CreditCardTemplate(String name, String number, String expiration, String securityCode, double balance) {
 		this.name = name;
 		this.number = number;
 		this.expiration = expiration;
 		this.securityCode = securityCode;
+		this.balance = balance;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	public String getNumber() {
+		return number;
+	}
+	public String getExpiration() {
+		return expiration;
+	}
+
+	public String getSecurityCode() {
+		return securityCode;
+	}
+
+
+
 	public boolean validation() {
 		boolean validator = false;
 		if (nameCheck(name) == true && numberCheck(number) == true && numberCheck(expiration) == true 
@@ -51,7 +69,7 @@ public abstract class CreditCardTemplate {
 		return check;
 	}
 
-	private boolean isExpValid(String date) throws NullPointerException {
+	protected boolean isExpValid(String date) throws NullPointerException {
 		boolean finalValue = false;
 		int mm, yy;
 		mm = Integer.parseInt(date.substring(0, 2));
@@ -84,5 +102,14 @@ public abstract class CreditCardTemplate {
 				+ "\nOwner name - " + name
 				+ "\nExpiration date - " + expiration;
 		return string;
+	}
+	
+	public boolean pay(double price) {
+		if (price > balance) 
+			return false;
+		else {
+			balance = balance - price;
+			return true;
+		}
 	}
 }
