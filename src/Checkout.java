@@ -1,4 +1,3 @@
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -177,24 +176,29 @@ public class Checkout extends JFrame {
 					.addGap(15))
 		);
 		contentPane.setLayout(gl_contentPane);
+		
 		ActionListener pay = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				if(!txtName.getText().toString().equals("") && !txtCode.getText().toString().equals("") && !txtNumber.getText().toString().equals("") && !txtDate.getText().toString().equals("") && !txtBalance.getText().toString().equals("")){
-				CreditCardTemplate card = new VisaCredit(txtName.getText().toString(), txtNumber.getText().toString(), txtDate.getText().toString(), txtCode.getText().toString(), Double.parseDouble(txtBalance.getText().toString()));
-				card.validation();
-				if (card.pay(Double.parseDouble(lblTotal.getText().toString())) == true && card.validation() == true)
-				JOptionPane.showMessageDialog(null,"Purchase was sucessful");
-				order.removeAll();
-				}else {
-					JOptionPane.showMessageDialog(null, "Incorrect or missing credentials, please enter correct credentials");
-				}
+				if(!txtName.getText().toString().equals("") && !txtCode.getText().toString().equals("") && !txtNumber.getText().toString().equals("") && !txtDate.getText().toString().equals("") && !txtBalance.getText().toString().equals("")) {
+					CreditCardTemplate card = new VisaCredit(txtName.getText().toString(), txtNumber.getText().toString(), txtDate.getText().toString(), txtCode.getText().toString(), Double.parseDouble(txtBalance.getText().toString()));
+					if (card.validation() == true) {
+						if (card.pay(Double.parseDouble(lblTotal.getText())) == true) {
+							JOptionPane.showMessageDialog(null ,"Purchase was sucessful");
+							order.removeAll();
+							lblTotal.setText("");
+							dispose();
+						}
+						else JOptionPane.showMessageDialog(null, "Not enough funds on credit card, please add more funds");
+					}
+					else JOptionPane.showMessageDialog(null, "Incorrect or missing credentials, please enter correct credentials");
+				} 
+				else JOptionPane.showMessageDialog(null, "Incorrect or missing credentials, please enter correct credentials");
 			}
 		};
 		btnPay.addActionListener(pay);
 		
 		ActionListener clear = new ActionListener() {
 			public void actionPerformed(ActionEvent actionEvent) {
-				order.removeAll();
 				txtName.setText("");
 				txtNumber.setText("");
 				txtDate.setText("");

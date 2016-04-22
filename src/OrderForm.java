@@ -2,8 +2,6 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-import java.awt.BorderLayout;
-
 import javax.swing.JLabel;
 
 import java.awt.Font;
@@ -14,30 +12,19 @@ import javax.swing.SwingConstants;
 import javax.swing.JRadioButton;
 import javax.swing.JPanel;
 
-import java.awt.FlowLayout;
-
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.border.LineBorder;
-
-import java.awt.Color;
-
 import javax.swing.border.TitledBorder;
-import javax.swing.JList;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
-import javax.swing.JTextPane;
 import javax.swing.JTextArea;
 
 public class OrderForm {
 
 	private JFrame frame;
 	private final ButtonGroup btngrpSize = new ButtonGroup();
-	private final ButtonGroup btngrpDrinks = new ButtonGroup();
 	private final ButtonGroup btngrpCupSize = new ButtonGroup();
 	private final ButtonGroup btngrpChoices = new ButtonGroup();
 	private final ButtonGroup btngrpBurger = new ButtonGroup();
@@ -650,8 +637,8 @@ public class OrderForm {
 						order.addItem(itemFactory.getItem("small size pizza"));
 						lstItems.setText(order.showItems());
 					} else {
-						JOptionPane.showMessageDialog(null,
-								"Please select one of the items!");
+						order.addItem(new Pizza());
+						lstItems.setText(order.showItems());
 					}
 				} else if (rdbtnDrink.isSelected()) {
 					if (rdbtnLargeDrink.isSelected()) {
@@ -664,8 +651,8 @@ public class OrderForm {
 						order.addItem(itemFactory.getItem("small size drink"));
 						lstItems.setText(order.showItems());
 					} else {
-						JOptionPane.showMessageDialog(null,
-								"Please select one of the items!");
+						order.addItem(new Drink());
+						lstItems.setText(order.showItems());
 					}
 				} else if (rdbtnBurgers.isSelected()) {
 					if (rdbtnAngus.isSelected()) {
