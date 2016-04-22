@@ -1,5 +1,5 @@
 public class Pizza implements Item{
-	protected String name = "Jan's special Pizza";
+	protected String name = "Slice of Pizza";
 	protected double price = 10;
 	
 	@Override
