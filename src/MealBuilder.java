@@ -19,7 +19,7 @@ public class MealBuilder {
 		order.addItem(new Drink());
 	}
 	
-	public void total() {
-		order.showItems();
+	public double total() {
+		return order.getTotal();
 	}
 }

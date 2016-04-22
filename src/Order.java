@@ -3,14 +3,15 @@ import java.util.List;
 
 public class Order {
 	private List<Item> array = new ArrayList<Item>();
-	private double total = 0;
+	private double total;
+	private String items;
 	
 	public void addItem(Item Item) {
 		array.add(Item);
 	}
 	
-	public void removeItem(int a) {
-		array.remove(a - 1);
+	public void removeItem() {
+		array.remove(array.size() - 1);
 	}
 	
 	public void removeAll() {
@@ -22,6 +23,7 @@ public class Order {
 	}
 
 	public double getTotal() {
+		total = 0;
 		for (int i = 0; i < array.size(); i++) {
 			total += array.get(i).price();
 		}
@@ -32,11 +34,11 @@ public class Order {
 		return array.size();
 	}
 	
-	public void showItems() {
+	public String showItems() {
+		items = "";
 		for (int i = 0; i < array.size(); i++) {
-			System.out.println(i+1 + " " + array.get(i).name() + " " + array.get(i).price());
-			total += array.get(i).price();
+			items += array.get(i).name() + " " + array.get(i).price() + "                  ";		
 		}
-		System.out.println("\nWith total price of: " + total + "\n");
+		return items;
 	}
 }

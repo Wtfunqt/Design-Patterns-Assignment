@@ -1,4 +1,4 @@
-	import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -44,7 +44,7 @@ public class Tester {
 		order.addItem(new Drink());
 		order.addItem(new PizzaSizeDecorator(new Pizza(), "large"));
 		order.addItem(new DrinkSizeDecorator(new Drink(), "small"));
-		order.removeItem(1);
+		order.removeItem();
 		int expected = 3;
 		int actual = order.arraySize();
 		assertEquals(expected, actual);
@@ -113,7 +113,7 @@ public class Tester {
 	//9 case
 	@Test
 	public void expirationDateCheck() {
-		CreditCardTemplate card1 = new VisaCredit("Ademir Gotov", "4123456789012345", "1210", "578", 100);
+		CreditCardTemplate card1 = new VisaCredit("123", "4123456789012345", "1210", "578", 100);
 		boolean expected1 = false;
 		boolean actual1 = card1.isExpValid(card1.getExpiration());
 		assertEquals(expected1, actual1);
